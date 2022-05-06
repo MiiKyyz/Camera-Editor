@@ -1,0 +1,1839 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+
+
+
+
+
+<CustomSnackbar>
+
+
+
+    MDIconButton:
+        pos_hint: {'center_y': .5}
+        icon: root.icon
+        opposite_colors: True
+
+<MyTile@SmartTileWithLabel>
+    size_hint_y: None
+    height: "240dp"
+
+
+
+<MagicButton@MagicBehavior+MDIconButton>
+
+<Button>
+    background_color: (0/255,0/255,0/255,0)
+    canvas.before:
+        Color:
+            rgb: (255/255,6/255,20/255,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [5]
+
+<myspinner@Spinner>
+    background_color: (0/255,0/255,0/255,0)
+    canvas.before:
+        Color:
+            rgb: (255/255,6/255,20/255,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [10]
+
+
+
+
+
+
+
+<NavigationWindow>:
+    orientation: 'vertical'
+
+    id: navi_lay
+
+
+    MDFloatLayout:
+        id: prueba
+
+
+        MDBoxLayout:
+
+
+            name: ''
+            id: miky
+
+            pos_hint: {'center_x': 0.5, "center_y": 0.85}
+            size_hint: (1,0.1)
+            #canvas.before:
+                #Color:
+                    #rgba: (255/255, 0/255, 0/255, 1)
+                #Rectangle:
+                    #size: self.size
+                    #pos: self.pos
+
+
+
+            Image:
+                id: pintura
+                source: 'logo.png'
+
+
+            MDLabel:
+
+                text: "Menu of selection"
+                outline_color: (255/255, 255/255, 255/255, 1)
+                outline_width: 4
+                font_size: 30
+                bold: True
+                italic: True
+
+
+        MDBoxLayout:
+
+            pos_hint: {'center_x': 0.5, "center_y": 0.75}
+            canvas.before:
+                Color:
+                    rgba: (0,0,0,1)
+
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            size_hint_y:None
+            height:1
+
+
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5, "center_y": 0.5}
+
+            size_hint: (1, 0.3)
+            id: miky
+
+
+
+
+
+            ScrollView:
+                MDList:
+                    id: A
+
+                    OneLineAvatarIconListItem:
+                        text: 'Camera AI'
+                        bg_color: (1,1,1,1)
+                        on_press:
+
+
+                            root.navi.set_state("close")
+                            root.screen_manager.current = "Camera AI"
+
+                        IconLeftWidget:
+                            icon: "camera"
+
+
+                    OneLineAvatarIconListItem:
+                        text: 'Main Screen'
+                        bg_color: (1,1,1,1)
+                        id:ortiz
+                        on_press:
+                            root.navi.set_state("close")
+                            root.screen_manager.current = "Main"
+
+
+
+                        IconLeftWidget:
+                            icon: 'microsoft-xbox-controller'
+
+
+
+
+
+
+
+
+
+<MainLayout>:
+
+
+
+    navi: navi
+    screen_manager: screen_manager
+    second_screen: second_screen
+    id: main_id
+
+
+
+    MDFloatLayout:
+        size: root.width, root.height
+
+        navi: navi
+
+
+
+        MDNavigationLayout:
+
+            ScreenManager:
+                id: screen_manager
+                transition: FadeTransition()
+
+
+                MDScreen:
+                    name: "login"
+
+                    MDFloatLayout:
+                        id: login_screen
+
+
+                        size: root.width, root.height
+                        canvas.before:
+                            Color:
+                                #rgba: (255/255, 0/255, 255/255, 1)
+
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                                source: 'red.png'
+
+
+
+
+                        MDBoxLayout:
+                            size_hint: None, None
+                            width: '280dp'
+                            height: '380dp'
+                            line_radius: 20
+                            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                            canvas.before:
+                                Color:
+                                    rgba: (250/255,0/255,0/255, 1)
+
+
+                                Line:
+                                    rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.line_radius)
+                                    width: 5
+
+
+                            MDFloatLayout:
+                                id:SC
+                                check: False
+
+                                canvas.before:
+                                    Color:
+                                        rgba: (20/255, 5/255, 2/255, 1)
+
+                                    RoundedRectangle:
+                                        size: self.size
+                                        pos: self.pos
+                                        radius: [20]
+
+                                MDBoxLayout:
+                                    id: login_anim
+                                    size_hint: None, None
+
+                                    opacity: 0
+                                    width: "0dp"
+                                    height: "0dp"
+                                    pos_hint: {'center_x': 0.5, 'top':1}
+
+                                    canvas.before:
+                                        Color:
+                                            #rgba: (255/255, 0/255, 255/255, 1)
+
+                                        Rectangle:
+                                            size: self.size
+                                            pos: self.pos
+                                            source: 'congrats.png'
+
+
+                                MDLabel:
+                                    text: '[font=HARLOWSI]Welcome To Gemys[/font]'
+                                    outline_color: (1,0,0,1)
+                                    outline_width: 2
+                                    markup: True
+                                    #size_hint: (0.5, 0.1)
+                                    font_size: 40
+                                    size_hint: None, None
+                                    width: SC.width
+                                    height: SC.height/6
+                                    color: (255/255, 255/255, 255/255, 1)
+                                    pos_hint: {'center_x': 0.5, 'top':0.93}
+                                    halign: 'center'
+                                    markup:True
+
+
+
+
+
+
+
+                                MDTextFieldRound:
+                                    size_hint: (0.6, 0.1)
+                                    pos_hint: {'center_x': 0.5, 'top':0.7}
+                                    hint_text: 'Username'
+                                    id: Username
+
+                                MDTextFieldRound:
+                                    size_hint: (0.6, 0.1)
+                                    pos_hint: {'center_x': 0.5, 'top':0.55}
+                                    hint_text: 'Password'
+                                    password: True
+                                    #color: (45/255, 28/255, 255/255, 1)
+                                    id: Password
+
+                                MDRoundFlatIconButton:
+                                    text: 'Login'
+                                    size_hint: (0.6, 0.1)
+                                    pos_hint: {'center_x': 0.5, 'top':0.4}
+                                    icon: 'login'
+
+                                    id: M
+                                    on_press:
+                                        root.Login_User()
+                                        #root.navi.set_state("close")
+                                        #root.screen_manager.current = "Main"
+
+                                MDSpinner:
+                                    size_hint: None, None
+                                    size: dp(46), dp(46)
+                                    checker: False
+                                    id: spinner
+                                    pos_hint: {'center_x': 0.5, 'top':0.4}
+                                    active: True if spinner.checker else False
+
+                                MDRoundFlatIconButton:
+                                    text: "Register"
+                                    size_hint: (0.6, 0.1)
+                                    pos_hint: {'center_x': 0.5, 'top':0.2}
+                                    icon: 'account-multiple-plus'
+                                    on_press: root.screen_manager.current = "Registration"
+                                    id: Register
+
+
+
+
+
+                    MDNavigationDrawer:
+                        id:navi_2
+                        md_bg_color: (77/255, 0/255, 10/255, 1)
+                        radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+
+
+                        NavigationWindow:
+                            screen_manager: screen_manager
+                            navi: navi_2
+
+
+
+
+###########################################################################################################################
+
+                MDScreen:
+                    name: "Registration"
+
+
+                    MDBoxLayout:
+
+                        size: root.width, root.height
+                        img: 'forest_6.jpg'
+                        id: background
+                        opacity: 1
+                        canvas.before:
+                            Color:
+                                #rgba: (255/255, 0/255, 0/255, 1)
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                                source: background.img
+
+
+                    MDIconButton:
+                        icon: "arrow-left-thick"
+                        user_font_size: "60dp"
+                        pos_hint: {"center_x": 0.1, "center_y":0.9}
+                        theme_text_color: 'Custom'
+                        text_color:[255/255, 200/255, 100/255, 1]
+                        on_press: root.arrow_back()
+
+                    MDBoxLayout:
+                        radi: 20
+                        pos_hint: {"center_x": 0.5, "center_y":0.5}
+                        size_hint: (None, None)
+                        width: "350dp"
+                        height: "550dp"
+                        id: liner
+
+
+                        canvas.before:
+                            Color:
+                                rgb: (255/255,5/255,5/255,1)
+
+                            Line:
+                                rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.radi)
+                                width: 3.5
+
+
+
+                        MDFloatLayout:
+
+                            pos_hint: {"center_x": 0.5, "center_y":0.5}
+                            size_hint: (None, None)
+                            width: "350dp"
+                            height: "550dp"
+                            id: boxy
+                            canvas.before:
+                                Color:
+                                    rgba: (255/255,255/255,255/255,0.5)
+
+                                RoundedRectangle:
+                                    pos: boxy.pos
+                                    size: boxy.size
+                                    radius: [20]
+
+
+                            MDLabel:
+                                text: '[size=28][font=HARLOWSI]Registration[/font][/size]'
+                                color: (255/255,2/255,52/255,1)
+                                font_size: "25dp"
+                                pos_hint: {"center_x": 0.5, "top":0.97}
+                                size_hint: (None, None)
+                                width: "150dp"
+                                outline_color: (1,1,1,1)
+                                outline_width: 2
+                                height: "25dp"
+                                markup: True
+
+                            MDTextField:
+                                hint_text: "Name"
+                                id: Name_User
+                                pos_hint: {"center_x": 0.5, "top":0.9}
+                                size_hint: (None, None)
+                                width: "200dp"
+                                height: "25dp"
+                                mode: "rectangle"
+                                fill_color: [255/255,0/255,0/255,0.2]
+                                line_color_focus: (0,0,0,1)
+
+                            MDTextField:
+                                hint_text: "Last Name"
+                                id: User_LastName
+                                pos_hint: {"center_x": 0.5, "top":0.75}
+                                size_hint: (None, None)
+                                width: "200dp"
+                                height: "25dp"
+                                mode: "rectangle"
+                                fill_color: [255/255,0/255,0/255,0.2]
+                                line_color_focus: (0,0,0,1)
+
+                            MDTextField:
+                                hint_text: "Password"
+                                id: User_Password
+                                password: True
+                                pos_hint: {"center_x": 0.5, "top":0.6}
+                                size_hint: (None, None)
+                                width: "200dp"
+                                height: "25dp"
+                                mode: "rectangle"
+                                fill_color: [255/255,0/255,0/255,0.2]
+                                line_color_focus: (0,0,0,1)
+
+
+                            MDTextField:
+                                hint_text: "E-mail"
+                                pos_hint: {"center_x": 0.5, "top":0.45}
+                                id: User_email
+
+                                size_hint: (None, None)
+                                width: "200dp"
+                                height: "25dp"
+                                mode: "rectangle"
+
+                                line_color_focus: (0,0,0,1)
+
+
+
+
+                            myspinner:
+                                text: "Select Month"
+                                id: select_mo
+                                values: ["january", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+
+
+                                pos_hint: {"center_x": 0.2, "center_y":0.25}
+                                size_hint: (None, None)
+                                width: "90dp"
+                                height: "35dp"
+
+
+                            myspinner:
+                                text: "Day"
+                                id: User_day_birth
+                                values: []
+
+                                pos_hint: {"center_x": 0.5, "center_y":0.25}
+                                size_hint: (None, None)
+                                width: "90dp"
+                                height: "35dp"
+
+                            myspinner:
+                                text: "year"
+                                id: User_year_birth
+                                values: []
+
+                                pos_hint: {"center_x": 0.8, "center_y":0.25}
+                                size_hint: (None, None)
+                                width: "90dp"
+                                height: "35dp"
+
+
+
+
+
+                            MDIconButton:
+                                id: register_submit
+                                icon: "account-plus"
+                                user_font_size: "60dp"
+
+                                pos_hint: {"center_x": 0.5, "center_y":0.1}
+
+                                theme_text_color:'Custom'
+                                text_color:[190/255, 2/255, 5/255, 1]
+                                on_press: root.Submit_Registration()
+
+
+
+                            MDSpinner:
+                                size_hint: None, None
+                                size: dp(46), dp(46)
+                                checker: False
+                                id: spinner_register
+                                pos_hint: {"center_x": 0.5, "center_y":0.1}
+                                active: True if spinner_register.checker else False
+
+
+
+
+
+
+
+
+
+##########################################################################################################################
+
+                MDScreen:
+                    name: "Main"
+
+                    MDBoxLayout:
+
+                        size: root.width, root.height
+                        img: 'forest_6.jpg'
+                        id: background
+                        opacity: 1
+                        canvas.before:
+                            Color:
+                                #rgba: (255/255, 0/255, 0/255, 1)
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                                source: background.img
+
+
+                    MDToolbar:
+                        id: toolbar
+                        title: 'Main Screen'
+                        md_bg_color: (22/255,0/255,0/255, 1)
+                        specific_text_color: 1, 1, 1, 1
+                        opacity: 1
+                        pos_hint: {'top':1}
+                        elevation: 25
+                        left_action_items: [["menu", lambda x: root.navi.set_state('open')]]
+                        right_action_items: [['dots-vertical', lambda x: root.show_alert_dialog()]]
+
+                    MDFloatLayout:
+                        size: root.width, root.height
+
+
+                        MDFloatLayout:
+
+                            #size: root.width, root.height
+                            size_hint: None, None
+                            width: root.width
+                            height: 400
+                            pos_hint: {'top': 1}
+                            #pos: (300,300)
+                            id: glo
+
+
+
+
+                            MDSwiper:
+                                size_hint_y: None
+                                height: root.height - toolbar.height - dp(40)
+                                y: root.height - self.height - toolbar.height - dp(20)
+                                #on_swipe: self.get_current_item().ids.icon.shake()
+
+                                size_hint: None, None
+                                width: root.width
+                                #height: 425
+                                height: 200
+                                #size_hint: (1, 0.6)
+
+                                id: swiper
+
+                                on_swipe_right: root.swipe_right()
+                                on_swipe_left: root.swipe_left()
+
+
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_1
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_1
+                                                #text: 'miky'
+                                                halign: 'center'
+
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_2
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_2
+                                                #text: 'miky'
+                                                halign: 'center'
+
+
+
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_3
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_3
+                                                #text: 'miky'
+                                                halign: 'center'
+
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_4
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_4
+                                                #text: 'miky'
+                                                halign: 'center'
+
+
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_5
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_5
+                                                #text: 'miky'
+                                                halign: 'center'
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_6
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_6
+                                                #text: 'miky'
+                                                halign: 'center'
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_7
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_7
+                                                #text: 'miky'
+                                                halign: 'center'
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_8
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_8
+                                                #text: 'miky'
+                                                halign: 'center'
+
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_9
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_9
+                                                #text: 'miky'
+                                                halign: 'center'
+                                MDSwiperItem:
+
+
+
+                                    MDRelativeLayout:
+
+                                        FitImage:
+                                            id: image_back_10
+                                            radius: [20]
+                                            #source: 'thor.png'
+
+                                        MDBoxLayout:
+                                            id: box_label
+                                            pos_hint: {"center_x":0.5, "center_y":0.8}
+                                            size_hint: (0.7, 0.3)
+
+
+
+                                            canvas.before:
+                                                Color:
+                                                    rgba:(255/255,50/255,50/255,0.5)
+
+                                                RoundedRectangle:
+                                                    size: box_label.size
+                                                    pos: box_label.pos
+                                                    radius: [15]
+                                            MDLabel:
+                                                id: title_10
+                                                #text: 'miky'
+                                                halign: 'center'
+                                #
+
+
+
+                        MDNavigationDrawer:
+                            id:navi
+                            md_bg_color: (77/255, 0/255, 10/255, 1)
+                            radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+
+
+                            NavigationWindow:
+                                screen_manager: screen_manager
+                                navi: navi
+
+
+
+
+###########################################################################################################################
+                MDScreen:
+                    name: 'Camera AI'
+
+
+                    id: Cam_AI
+                    size: root.width, root.height
+
+                    MDFloatLayout:
+                        size: root.width, root.height
+
+
+                        MDBottomNavigation:
+                            panel_color: (35/255,9/255,59/255,1)
+                            id: mlb
+
+                            MDBottomNavigationItem:
+                                name: 'video_idet'
+                                text: "Video"
+                                icon: "baseball"
+
+                                #on_tab_touch_down: print("video")
+                                on_tab_press: root.navi_screen("video")
+
+                                MDFloatLayout:
+                                    size: root.width, root.height
+                                    orientation: 'vertical'
+                                    id: MDF
+
+                                    MDBoxLayout:
+
+                                        canvas.before:
+                                            Color:
+                                                rgba: (35/255,9/255,59/255,1)
+                                                #(35/255,9/255,59/255,1)(92/255,85/255,1/255,1)
+                                            Rectangle:
+                                                size: self.size
+                                                pos: self.pos
+
+
+
+
+
+                                    #Image:
+                                        #id: cam_img
+                                        #pos_hint:{'center_y': 0.63, 'center_x': 0.5}
+                                        #size_hint:(0.5, 0.5)
+
+
+                                    MDCard:
+                                        pos_hint: {'center_y':0.16}
+                                        #size_hint: (0.5,0.5)
+                                        size_hint: None, None
+                                        width: root.width
+                                        height: 250
+                                        elevation: 50
+                                        radius: [20,20,0,0]
+
+                                        md_bg_color: (149/255,33/255,255/255,0.5)
+
+
+
+
+                                        MDFloatLayout:
+
+                                            id: flote
+
+
+
+                                            MDCarousel:
+
+                                                size_hint: None, None
+                                                width: root.width
+                                                height: 250
+                                                id: Carousel
+
+
+                                                MDFloatLayout:
+
+
+                                                    ScrollView:
+
+
+                                                        MDGridLayout:
+                                                            cols: 3
+                                                            #size_hint_y: 1
+                                                            #size: root.width, root.height
+                                                            size: root.width, 250
+                                                            size_hint_x: None
+                                                            size_hint_y: None
+
+                                                            padding: dp(4), dp(4)
+                                                            spacing: dp(4)
+
+                                                            MDRectangleFlatButton:
+                                                                size_hint: (0.5,0.5)
+
+
+                                                                id: Canny
+                                                                value: "Canny"
+                                                                on_press: root.Cam_Model(Canny.value)
+
+                                                                MDBoxLayout:
+                                                                    orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_canny_cam
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]Canny[/size]\n[size=14]edges detection[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 0.4
+
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+                                                            MDRectangleFlatButton:
+                                                                size_hint: (0.5,0.5)
+
+
+                                                                id: Kernel
+                                                                value: "Kernel"
+
+                                                                on_press: root.Cam_Model(Kernel.value)
+
+                                                                MDBoxLayout:
+                                                                    orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_Kernel_cam
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]Kernel[/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 0.4
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+                                                            MDRectangleFlatButton:
+                                                                size_hint: (0.5,0.5)
+
+
+                                                                id: Kernel_Light
+                                                                value: "Kernel_Light"
+                                                                on_press: root.Cam_Model(Kernel_Light.value)
+
+                                                                MDBoxLayout:
+                                                                    orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_Kernel_Light_cam
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]Kernel Light[/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 0.4
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+
+
+
+
+                                                MDBoxLayout:
+                                                    #size_hint: (1, 1)
+                                                    size: root.width, root.height
+
+
+                                                    ###################
+
+
+                                                    ScrollView:
+                                                        bar_color: [21/255, 147/255, 147/255, 1]
+                                                        bar_width: 5
+
+                                                        MDBoxLayout:
+
+
+
+                                                            id: container
+                                                            orientation: "vertical"
+                                                            size_hint_y: None
+
+                                                            height: self.minimum_height
+
+
+                                                            canvas.before:
+                                                                Color:
+                                                                    rgba:  (0,0,0,0)
+
+                                                                Rectangle:
+                                                                    pos: self.pos
+                                                                    size: self.size
+
+
+
+
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+                                                                text_color: (0,0,0,0)
+
+
+                                                                id:frame_thresh
+                                                                value: 'frame_thresh'
+                                                                on_press: root.Cam_Model(frame_thresh.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: frame_thresh_video
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]Thresh [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+                                                                text_color: (0,0,0,0)
+
+
+                                                                id:comic_uncolored
+                                                                value: 'comic_uncolored'
+                                                                on_press: root.Cam_Model(comic_uncolored.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: comic_uncolored_video
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]comic_uncolored [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                text_color: (0,0,0,0)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+
+
+                                                                id:blue_light
+                                                                value: 'blue_light'
+                                                                on_press: root.Cam_Model(blue_light.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: blue_light_video
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]blue light [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+
+                                                MDBoxLayout:
+                                                    #size_hint: (1, 1)
+                                                    size: root.width, root.height
+
+
+                                                    ScrollView:
+                                                        bar_color: [21/255, 147/255, 147/255, 1]
+                                                        bar_width: 5
+
+                                                        MDBoxLayout:
+
+
+                                                            #size: (self.parent.width, self.parent.height-1)
+                                                            id: container
+                                                            orientation: "vertical"
+                                                            size_hint_y: None
+
+                                                            height: self.minimum_height
+
+
+                                                            canvas.before:
+                                                                Color:
+                                                                    rgba:  (0,0,0,0)
+
+                                                                Rectangle:
+                                                                    pos: self.pos
+                                                                    size: self.size
+
+
+
+
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+                                                                text_color: (0,0,0,0)
+
+
+                                                                id:replicate
+                                                                value: 'Replicate'
+                                                                on_press: root.Cam_Model(replicate.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_replicate_cam
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]replicate [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+                                                                text_color: (0,0,0,0)
+
+
+                                                                id:reflect
+                                                                value: 'Reflect'
+                                                                on_press: root.Cam_Model(reflect.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_reflect_cam
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]reflect [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                text_color: (0,0,0,0)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+
+
+                                                                id:reflect101
+                                                                value: 'Reflect101'
+                                                                on_press: root.Cam_Model(reflect101.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_reflect101_cam
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]reflect101 [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+
+
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+                                                                text_color: (0,0,0,0)
+
+
+                                                                id:wrap
+                                                                value: 'Wrap'
+                                                                on_press: root.Cam_Model(wrap.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_wrap_cam
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]wrap [/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+                                                            MDRectangleFlatButton:
+
+                                                                size_hint: (1, None)
+                                                                height: 500
+                                                                markup: True
+                                                                text: "[size=78]GeeksForGeeks[/size]"
+
+
+                                                                id:constant
+                                                                value: 'Constant'
+                                                                on_press: root.Cam_Model(constant.value)
+
+
+
+                                                                MDBoxLayout:
+                                                                    #orientation: 'vertical'
+                                                                    Image:
+                                                                        id: video_constant_cam
+                                                                        size_hint_x: 0.3
+
+
+                                                                    MDLabel:
+
+                                                                        text: "[size=26]constant[/size]\n[size=14]description to be announced[/size]"
+
+                                                                        markup: True
+                                                                        size_hint_y: 1
+                                                                        size_hint_x: 0.7
+
+                                                                        halign: 'center'
+                                                                        canvas.before:
+                                                                            Color:
+                                                                                rgb: (222/255,12/255,45/255,1)
+
+                                                                            Rectangle:
+                                                                                size: self.size
+                                                                                pos:  self.pos
+
+
+
+
+
+
+
+
+                            MDBottomNavigationItem:
+                                name: 'img_edit'
+                                text: "Image"
+                                icon: "baseball"
+                                id: img_idit
+
+                                on_tab_press: root.navi_screen("image")
+
+
+                                ScreenManager:
+                                    id: second_screen
+
+                                    MDScreen:
+                                        name: 'load_img'
+
+                                        MDFloatLayout:
+
+
+
+
+                                            MDRoundFlatButton:
+                                                text: 'Select Image'
+                                                pos_hint: {'center_x':0.5, 'y':0.5}
+                                                on_press:
+                                                    root.file_manager_open()
+                                                    root.load_img_front()
+
+
+
+
+
+
+                                    MDScreen:
+                                        name: 'save_img'
+
+                                        MDFloatLayout:
+
+                                            MDBackdrop:
+                                                id: backdrop
+                                                title: 'Sports details'
+                                                bold: True
+                                                #header: False
+                                                #radius_left:0
+                                                #radius_right:0
+
+                                                MDBackdropBackLayer:
+
+                                                    MDFloatLayout:
+
+                                                        canvas.before:
+                                                            Color:
+                                                                rgb: (15/255,55/255,20/255,1)
+
+                                                            Rectangle:
+                                                                size: self.size
+                                                                pos:  self.pos
+
+                                                        Image:
+                                                            id: img_edit
+                                                            size_hint: (0.8,0.8)
+                                                            pos_hint: {'center_x':0.3, 'center_y':0.56}
+
+
+
+                                                        MDTextField:
+
+                                                            hint_text: 'Photo Name'
+                                                            id: name_photo
+                                                            pos_hint: {'x':0.6, 'y':0.7}
+                                                            size_hint: (None, None)
+                                                            width: 180
+                                                            height: 75
+                                                            icon_right: "language-python"
+
+                                                        myspinner:
+                                                            id: format_img
+                                                            pos_hint: {'x':0.6, 'y':0.5}
+                                                            text: 'png'
+                                                            size_hint: (None, None)
+                                                            width: 180
+                                                            height: 75
+                                                            values: ['png', 'jpg']
+
+
+                                                        MDRectangleFlatIconButton:
+                                                            pos_hint: {'x':0.6, 'y':0.3}
+                                                            text: 'Save Image'
+                                                            md_bg_color: (22/255,88/255,66/255,1)
+                                                            theme_text_color:'Custom'
+                                                            text_color:[190/255, 2/255, 5/255, 1]
+                                                            on_press:
+                                                                root.save_image_edited()
+                                                                #root.second_screen.current = 'load_img'
+
+
+                                                MDBackdropFrontLayer:
+                                                    id: BGP
+
+                                                    MDFloatLayout:
+
+                                                        #cols: 1
+                                                        size: BGP.width, BGP.height
+
+                                                        canvas.before:
+                                                            Color:
+                                                                rgb: (1/255,255/255,22/255,1)
+
+                                                            Rectangle:
+                                                                size: self.size
+                                                                pos:  self.pos
+
+
+                                                        MDRectangleFlatButton:
+
+                                                            size_hint: (0.3,0.2)
+                                                            pos_hint: {'y': 0.3, 'x': 0}
+                                                            on_press:
+                                                                backdrop.open()
+                                                                root.upload_image('Blue_light')
+
+                                                            MDBoxLayout:
+
+                                                                Image:
+                                                                    id: img_blue_light_pic
+                                                                    size_hint_x: (0.5)
+
+                                                                MDLabel:
+
+                                                                    text: 'Blue_light'
+
+                                                                    halign: 'center'
+                                                                    canvas.before:
+                                                                        Color:
+                                                                            rgb: (222/255,12/255,45/255,1)
+
+                                                                        Rectangle:
+                                                                            size: self.size
+                                                                            pos:  self.pos
+
+
+
+                                                        MDRectangleFlatButton:
+
+                                                            size_hint: (0.3,0.2)
+                                                            pos_hint: {'y': 0.5, 'x': 0.5}
+                                                            on_press:
+                                                                backdrop.open()
+                                                                root.upload_image('comic_Uncolored')
+
+                                                            MDBoxLayout:
+
+                                                                Image:
+                                                                    id: img_comic_uncolored_pic
+                                                                    size_hint_x: (0.5)
+
+                                                                MDLabel:
+
+                                                                    text: 'comic_Uncolored'
+
+                                                                    halign: 'center'
+                                                                    canvas.before:
+                                                                        Color:
+                                                                            rgb: (222/255,12/255,45/255,1)
+
+                                                                        Rectangle:
+                                                                            size: self.size
+                                                                            pos:  self.pos
+
+                                                        MDRectangleFlatButton:
+
+                                                            size_hint: (0.3,0.2)
+                                                            pos_hint: {'y': 0.7, 'x': 0.5}
+                                                            on_press:
+                                                                root.upload_image('Comic')
+                                                                backdrop.open()
+
+                                                            MDBoxLayout:
+
+                                                                Image:
+                                                                    id: img_comic_pic
+                                                                    size_hint_x: (0.5)
+
+                                                                MDLabel:
+
+                                                                    text: 'Comic'
+
+                                                                    halign: 'center'
+                                                                    canvas.before:
+                                                                        Color:
+                                                                            rgb: (222/255,12/255,45/255,1)
+
+                                                                        Rectangle:
+                                                                            size: self.size
+                                                                            pos:  self.pos
+
+
+                                                        MDRectangleFlatButton:
+
+                                                            size_hint: (0.3,0.2)
+                                                            pos_hint: {'y': 0.7}
+                                                            on_press:
+                                                                root.upload_image('Canny')
+                                                                backdrop.open()
+
+                                                            MDBoxLayout:
+
+                                                                Image:
+                                                                    id: img_canny_pic
+                                                                    size_hint_x: (0.5)
+
+                                                                MDLabel:
+
+                                                                    text: 'Canny'
+
+                                                                    halign: 'center'
+                                                                    canvas.before:
+                                                                        Color:
+                                                                            rgb: (222/255,12/255,45/255,1)
+
+                                                                        Rectangle:
+                                                                            size: self.size
+                                                                            pos:  self.pos
+
+
+
+
+
+                                                        MDRectangleFlatButton:
+
+                                                            size_hint: (0.3,0.2)
+                                                            pos_hint: {'y': 0.5}
+                                                            on_press:
+                                                                root.upload_image('thresh')
+                                                                backdrop.open()
+
+
+
+                                                            MDBoxLayout:
+
+                                                                Image:
+                                                                    id: img_thresh_pic
+                                                                    size_hint_x: (0.5)
+                                                                MDLabel:
+
+                                                                    text: 'thresh'
+
+                                                                    halign: 'center'
+                                                                    canvas.before:
+                                                                        Color:
+                                                                            rgb: (222/255,12/255,45/255,1)
+
+                                                                        Rectangle:
+                                                                            size: self.size
+                                                                            pos:  self.pos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        MDToolbar:
+                            id: toolbar_cam
+                            theme_icon_color:'Custom'
+                            icon_color:[255/255, 255/255, 255/255, 1]
+
+                            pos_hint:{'top':1}
+                            title: 'Bottom navigation'
+                            md_bg_color: (149/255,33/255,255/255,0.5)
+                            specific_text_color: (255/255,255/255,255/255, 1)
+                            left_action_items: [["menu", lambda x: navi_the_camera.set_state('open')]]
+                            right_action_items: [['camera', lambda x: root.cam_button()], ['close-circle', lambda x: root.Cam_Model('Default')], ['content-save', lambda x: root.save_picture()]]
+
+
+
+                        MDNavigationDrawer:
+                            id:navi_the_camera
+                            md_bg_color: (149/255,33/255,255/255,0.5)
+                            radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+
+
+                            NavigationWindow:
+                                screen_manager: screen_manager
+                                navi: navi_the_camera
+                                #second_screen: second_screen
+
+############################################################################################################
+                MDScreen:
+                    name: "radio"
+                    size: root.width, root.height
+
+                    Image:
+                        source: 'construction.png'
+
+
+                    MDToolbar:
+                        id: toolbar
+                        title: 'Main Screen'
+                        md_bg_color: (22/255,0/255,0/255, 1)
+                        specific_text_color: 1, 1, 1, 1
+                        opacity: 1
+                        pos_hint: {'top':1}
+                        elevation: 25
+                        left_action_items: [["menu", lambda x: navi_the.set_state('open')]]
+                        right_action_items: [['dots-vertical', lambda x: root.show_alert_dialog()]]
+
+
+
+
+                    MDNavigationDrawer:
+                        id:navi_the
+                        md_bg_color: (77/255, 0/255, 10/255, 1)
+                        radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+
+
+                        NavigationWindow:
+                            screen_manager: screen_manager
+                            navi: navi_the
+
+
+
+
+
+
+
+
+
+
+
+
